@@ -1,0 +1,53 @@
+package com.junnew.core.domain.repository
+
+import com.junnew.core.domain.model.Auth
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import java.util.UUID
+import javax.inject.Inject
+import javax.inject.Singleton
+
+@Singleton
+class AuthRepositoryImpl @Inject constructor(): AuthRepository {
+
+    private val current = MutableStateFlow<Auth?>(null)
+    private val users = mutableMapOf<String, Pair<String, String>>()
+
+    override suspend fun login(
+        email: String,
+        password: String
+    ): Auth {
+        delay(800)
+        val record = users[email.lowercase()]
+            ?: throw IllegalArgumentException("Email chưa đăng ký")
+        if (record.second != password) throw IllegalArgumentException("Mật khẩu không đúng")
+
+        return Auth(
+            id = UUID.nameUUIDFromBytes(email.toByteArray()).toString(),
+            name = record.first,
+            email = email
+        ).also { current.value = it }
+    }
+
+    override suspend fun register(
+        name: String,
+        email: String,
+        password: String
+    ): Auth {
+        delay(1000)
+        val key = email.lowercase()
+        if (users.containsKey(key)) throw IllegalArgumentException("Email đã tồn tại")
+        users[key] = name to password
+        return login(email, password)
+    }
+
+    override fun currentUser(): Flow<Auth?> = current.asStateFlow()
+
+    override suspend fun logout() {
+        delay(200)
+        current.value = null
+    }
+
+}

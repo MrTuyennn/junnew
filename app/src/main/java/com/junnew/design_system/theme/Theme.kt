@@ -1,4 +1,4 @@
-package com.junnew.ui.theme
+package com.junnew.design_system.theme
 
 import android.app.Activity
 import android.os.Build
@@ -31,6 +31,20 @@ private val LightColorScheme = lightColorScheme(
     onBackground = Color(0xFF1C1B1F),
     onSurface = Color(0xFF1C1B1F),
     */
+)
+
+private val LightScheme = lightColorScheme(
+    primary = md_primary_light,
+    onPrimary = md_onPrimary_light,
+    background = md_background_light,
+    onBackground = md_onBackground_light
+)
+
+private val DarkScheme = darkColorScheme(
+    primary = md_primary_dark,
+    onPrimary = md_onPrimary_dark,
+    background = md_background_dark,
+    onBackground = md_onBackground_dark
 )
 
 @Composable
