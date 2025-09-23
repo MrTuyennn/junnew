@@ -10,6 +10,7 @@ import com.junnew.features.auth.navigation.AuthDestinations
 import com.junnew.features.auth.navigation.authGraph
 import dagger.hilt.android.AndroidEntryPoint
 
+
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

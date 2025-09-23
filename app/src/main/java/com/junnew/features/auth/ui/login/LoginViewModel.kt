@@ -15,7 +15,9 @@ class LoginViewModel @Inject constructor(
     var ui = LoginUIState()
         private set
 
-    fun onEmailChange(v: String) { ui = ui.copy(email = v, emailError = null, generalError = null) }
+    fun onEmailChange(v: String) {
+        print("email: $v")
+        ui = ui.copy(email = v, emailError = null, generalError = null) }
     fun onPasswordChange(v: String) { ui = ui.copy(password = v, passwordError = null, generalError = null) }
 
     private fun validate(): Boolean {
