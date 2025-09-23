@@ -1,5 +1,8 @@
 package com.junnew.features.auth.ui.register
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.junnew.core.domain.usecase.RegisterUseCase
@@ -12,7 +15,7 @@ class RegisterViewModel @Inject constructor(
     private val register: RegisterUseCase
 ) : ViewModel() {
 
-    var ui = RegisterUIState()
+    var ui by mutableStateOf(RegisterUIState())
         private set
 
     fun onNameChange(v: String) { ui = ui.copy(name = v, nameError = null, generalError = null) }

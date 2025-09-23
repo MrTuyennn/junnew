@@ -1,10 +1,13 @@
 package com.junnew.features.auth.ui.login
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.junnew.core.domain.usecase.LoginUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import jakarta.inject.Inject
+import javax.inject.Inject
 import kotlinx.coroutines.launch
 
 @HiltViewModel
@@ -12,7 +15,7 @@ class LoginViewModel @Inject constructor(
     private val login: LoginUseCase
 ) : ViewModel() {
 
-    var ui = LoginUIState()
+    var ui by mutableStateOf(LoginUIState())
         private set
 
     fun onEmailChange(v: String) {
