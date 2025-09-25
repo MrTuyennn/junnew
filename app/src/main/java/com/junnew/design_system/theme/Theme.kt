@@ -4,11 +4,14 @@ import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Shapes
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.platform.LocalContext
 
 private val DarkColorScheme = darkColorScheme(
@@ -47,6 +50,13 @@ private val DarkScheme = darkColorScheme(
     onBackground = md_onBackground_dark
 )
 
+// App custom colors
+val LocalAppColors = staticCompositionLocalOf { AppColorsLight }
+
+val MaterialTheme.appColors: AppColors
+    @Composable
+    get() = LocalAppColors.current
+
 @Composable
 fun JunNewTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
@@ -54,19 +64,23 @@ fun JunNewTheme(
     dynamicColor: Boolean = true,
     content: @Composable () -> Unit
 ) {
-    val colorScheme = when {
+    val context = LocalContext.current
+    val materialColors = when {
         dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            val context = LocalContext.current
             if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
         }
-
-        darkTheme -> DarkColorScheme
-        else -> LightColorScheme
+        darkTheme -> DarkScheme
+        else -> LightScheme
     }
 
-    MaterialTheme(
-        colorScheme = colorScheme,
-        typography = Typography,
-        content = content
-    )
+    val customColors = if (darkTheme) AppColorsDark else AppColorsLight
+
+    CompositionLocalProvider(LocalAppColors provides customColors) {
+        MaterialTheme(
+            colorScheme = materialColors,
+            typography = Typography,
+            shapes = AppShapes,
+            content = content
+        )
+    }
 }

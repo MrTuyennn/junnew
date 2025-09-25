@@ -7,9 +7,12 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.junnew.design_system.theme.appColors
 
 
 @Composable
@@ -19,9 +22,9 @@ fun LoginScreen(
     vm: LoginViewModel = hiltViewModel()
 ) {
     val ui = vm.ui
-    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center,) {
         Column(Modifier.padding(24.dp)) {
-            Text("Đăng nhập", style = MaterialTheme.typography.headlineMedium)
+            Text("Đăng nhập", style = TextStyle(color = MaterialTheme.appColors.success, fontSize = 30.sp))
             Spacer(Modifier.height(16.dp))
 
             OutlinedTextField(
