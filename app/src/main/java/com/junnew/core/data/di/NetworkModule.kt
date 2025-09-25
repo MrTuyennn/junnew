@@ -13,6 +13,8 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
+import com.junnew.core.data.di.ultis.HeaderInterceptor
+import com.junnew.core.data.di.ultis.LoggingInterceptor
 import com.junnew.core.data.remote.AuthApi
 import java.util.concurrent.TimeUnit
 
@@ -35,25 +37,11 @@ object NetworkModule {
     fun provideOkHttp(
         @ApplicationContext context: Context
     ): OkHttpClient {
-        val log = HttpLoggingInterceptor().apply {
-//            level = if (BuildConfig.DEBUG)
-//                HttpLoggingInterceptor.Level.BODY
-//            else
-//                HttpLoggingInterceptor.Level.NONE
-            HttpLoggingInterceptor.Level.NONE
-        }
 
-        // Nếu có token, bạn inject 1 TokenStorage rồi add header ở đây
-        val auth: Interceptor = Interceptor { chain ->
-            val req = chain.request().newBuilder()
-                // .addHeader("Authorization", "Bearer ${tokenStorage.token}")
-                .build()
-            chain.proceed(req)
-        }
 
         return OkHttpClient.Builder()
-            .addInterceptor(log)
-            .addInterceptor(auth)
+            .addInterceptor(HeaderInterceptor())
+            .addInterceptor(LoggingInterceptor())
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
             .writeTimeout(30, TimeUnit.SECONDS)
