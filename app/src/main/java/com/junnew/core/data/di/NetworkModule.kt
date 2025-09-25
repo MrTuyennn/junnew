@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
-    @Provides fun provideBaseUrl(): String = "Link Url"
+    @Provides fun provideBaseUrl(): String = "https://api.example.com/"
 
     @Provides
     @Singleton

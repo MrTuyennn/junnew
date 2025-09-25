@@ -5,6 +5,8 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlin.hilt)
     alias(libs.plugins.kotlin.kapt)
+    id("org.jetbrains.kotlin.plugin.serialization") version "2.2.20"
+
 }
 
 android {
@@ -19,7 +21,7 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        buildConfigField("String", "BASE_URL", "\"https://api.example.com/\"")
+       // buildConfigField("String", "BASE_URL", "\"https://api.example.com/\"")
     }
 
     buildTypes {
