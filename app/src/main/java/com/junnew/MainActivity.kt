@@ -24,8 +24,7 @@ private fun AppRoot() {
     val nav = rememberNavController()
     NavHost(navController = nav, startDestination = AuthDestinations.Login) {
         authGraph(nav) {
-            // onAuthSuccess: ví dụ điều hướng về Home
-            // nav.navigate("home") { popUpTo(AuthDestinations.Login) { inclusive = true } }
+            nav.navigate("home") { popUpTo(AuthDestinations.Login) { inclusive = true } }
         }
     }
 }
