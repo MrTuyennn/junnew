@@ -20,3 +20,6 @@ data class AuthDto(
     val email: String,
     val token: String
 )
+
+@Serializable
+data class TokenPair(val accessToken: String, val refreshToken: String)

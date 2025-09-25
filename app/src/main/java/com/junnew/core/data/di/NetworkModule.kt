@@ -7,14 +7,13 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 import kotlinx.serialization.json.Json
-import okhttp3.Interceptor
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
-import com.junnew.core.data.di.ultis.HeaderInterceptor
+import com.junnew.core.data.di.ultis.AuthInterceptor
 import com.junnew.core.data.di.ultis.LoggingInterceptor
+import com.junnew.core.data.di.ultis.TokenAuthenticator
 import com.junnew.core.data.remote.AuthApi
 import java.util.concurrent.TimeUnit
 
@@ -40,7 +39,8 @@ object NetworkModule {
 
 
         return OkHttpClient.Builder()
-            .addInterceptor(HeaderInterceptor())
+           // .authenticator(TokenAuthenticator(provideAuthApi(provideRetrofit(provideOkHttp(context), provideBaseUrl(), provideJson())), provideSharedPreferences(context)))
+            .addInterceptor(AuthInterceptor())
             .addInterceptor(LoggingInterceptor())
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
