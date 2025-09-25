@@ -12,6 +12,8 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.junnew.design_system.component.button.ButtonType
+import com.junnew.design_system.component.button.IButton
 import com.junnew.design_system.theme.appColors
 
 
@@ -63,6 +65,7 @@ fun LoginScreen(
             }
 
             Spacer(Modifier.height(12.dp))
+            IButton(buttonType = ButtonType.TONAL) {  }
             Text(
                 "Chưa có tài khoản? Đăng ký",
                 modifier = Modifier
