@@ -13,12 +13,14 @@ object AuthDestinations {
 fun NavGraphBuilder.authGraph(nav: NavController, onAuthSuccess: () -> Unit) {
     composable(AuthDestinations.Login) {
         LoginScreen(
+            nav = nav,
             onSuccess = onAuthSuccess,
             onNavigateRegister = { nav.navigate(AuthDestinations.Register) }
         )
     }
     composable(AuthDestinations.Register) {
         RegisterScreen(
+            nav = nav,
             onSuccess = onAuthSuccess,
             onNavigateLogin = { nav.popBackStack() /* quay lại login */ }
         )
