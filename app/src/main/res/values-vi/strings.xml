@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">JunNew</string>
-    <string name="txt_login">Login</string>
+    <string name="txt_login">Đăng nhập</string>
     <string name="txt_email">Email</string>
-    <string name="txt_password">Password</string>
+    <string name="txt_password">Mật khẩu</string>
 </resources>

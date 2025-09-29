@@ -37,16 +37,25 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+
     kotlinOptions {
         jvmTarget = "11"
     }
+
     buildFeatures {
         compose = true
+        buildConfig = true
     }
+
+//    androidResources {
+//        generateLocaleConfig = true
+//    }
+
 }
 
 dependencies {
 
+    implementation(libs.google.material)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -60,6 +69,7 @@ dependencies {
     implementation(libs.hilt.android)
     //implementation(libs.hilt.compiler)
     implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.androidx.appcompat)
     kapt(libs.hilt.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
 
