@@ -1,10 +1,9 @@
-package com.junnew.core.data.remote
+package com.junnew.core.data.remote.service
 
 import com.junnew.core.data.remote.dto.AuthDto
 import com.junnew.core.data.remote.dto.LoginRequest
 import com.junnew.core.data.remote.dto.RegisterRequest
 import com.junnew.core.data.remote.dto.TokenPair
-import okhttp3.Call
 import retrofit2.http.Body
 import retrofit2.http.POST
 

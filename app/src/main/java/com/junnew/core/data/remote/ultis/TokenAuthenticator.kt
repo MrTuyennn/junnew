@@ -1,7 +1,7 @@
 package com.junnew.core.data.di.ultis
 
 import android.content.SharedPreferences
-import com.junnew.core.data.remote.AuthApi
+import com.junnew.core.data.remote.service.AuthApi
 import okhttp3.Authenticator
 import okhttp3.Request
 import okhttp3.Response

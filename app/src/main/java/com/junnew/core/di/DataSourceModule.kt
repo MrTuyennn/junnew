@@ -1,6 +1,6 @@
 package com.junnew.core.data.di
 
-import com.junnew.core.data.remote.AuthApi
+import com.junnew.core.data.remote.service.AuthApi
 import com.junnew.core.data.remote.datasource.UserRemoteDataSource
 import dagger.Module
 import dagger.Provides

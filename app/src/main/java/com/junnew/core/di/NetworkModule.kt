@@ -13,8 +13,7 @@ import retrofit2.Retrofit
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.junnew.core.data.di.ultis.AuthInterceptor
 import com.junnew.core.data.di.ultis.LoggingInterceptor
-import com.junnew.core.data.di.ultis.TokenAuthenticator
-import com.junnew.core.data.remote.AuthApi
+import com.junnew.core.data.remote.service.AuthApi
 import java.util.concurrent.TimeUnit
 
 @Module

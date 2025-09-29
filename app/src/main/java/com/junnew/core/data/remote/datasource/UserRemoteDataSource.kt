@@ -1,7 +1,7 @@
 package com.junnew.core.data.remote.datasource
 
 import android.util.Log
-import com.junnew.core.data.remote.AuthApi
+import com.junnew.core.data.remote.service.AuthApi
 import com.junnew.core.data.remote.dto.AuthDto
 import com.junnew.core.data.remote.dto.LoginRequest
 import com.junnew.core.data.remote.dto.RegisterRequest
