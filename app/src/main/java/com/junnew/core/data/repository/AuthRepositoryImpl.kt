@@ -4,40 +4,46 @@ import android.util.Log
 import com.junnew.core.data.remote.datasource.UserRemoteDataSource
 import com.junnew.core.data.remote.dto.LoginRequest
 import com.junnew.core.data.remote.dto.RegisterRequest
+import com.junnew.core.di.qualifiers.IoDispatcher
 import com.junnew.core.domain.model.Auth
 import com.junnew.design_system.constants.LogSystem
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import java.util.UUID
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class AuthRepositoryImpl @Inject constructor(
-    private val remoteDataSource: UserRemoteDataSource
+    private val remoteDataSource: UserRemoteDataSource,
+    @param:IoDispatcher private val coroutineDispatcher: CoroutineDispatcher,
 ): AuthRepository {
 
     private val current = MutableStateFlow<Auth?>(null)
     private val users = mutableMapOf<String, Pair<String, String>>()
 
-    override suspend fun login(
+    override  fun login(
         email: String,
         password: String
-    ): Auth {
-        delay(800)
-//        val record = users[email.lowercase()]
-//            ?: throw IllegalArgumentException("Email chưa đăng ký")
-//        if (record.second != password) throw IllegalArgumentException("Mật khẩu không đúng")
+    ): Flow<Auth> {
         Log.d(LogSystem.LOG_LEVELS, "login : $email")
         val user = remoteDataSource.loginAuth(LoginRequest(email, password))
 
-        return Auth(
-            id = "user.id",
-            name = "user.token",
-            email = "user.email"
-        ).also { current.value = it }
+        return flow {
+            val dto = user.first()
+            val auth = Auth(
+                id = dto.data?.id ?: "",
+                name = dto.data?.token ?: "",
+                email = dto.data?.email ?: "",
+            )
+            emit(auth)
+        }.flowOn(coroutineDispatcher)
     }
 
     override suspend fun register(
@@ -45,12 +51,18 @@ class AuthRepositoryImpl @Inject constructor(
         email: String,
         password: String
     ): Auth {
-        delay(1000)
-        val key = email.lowercase()
-        if (users.containsKey(key)) throw IllegalArgumentException("Email đã tồn tại")
-//        users[key] = name to password
-      //  val authRegister = remoteDataSource.registerAuth(RegisterRequest(email, password, name))
-        return login("authRegister.email", password)
+       try {
+           val user = remoteDataSource.registerAuth(RegisterRequest(email, password, name))
+           val dto = user.body()
+           val auth = Auth(
+               id = dto?.id ?: "",
+               name = dto?.token ?: "",
+               email = dto?.email ?: "",
+           )
+           return auth
+       } catch (e: Exception) {
+           throw e
+       }
     }
 
     override fun currentUser(): Flow<Auth?> = current.asStateFlow()
