@@ -8,7 +8,7 @@ import com.junnew.core.data.remote.dto.RegisterRequest
 import com.junnew.core.data.remote.ultis.BaseApiResponse
 import com.junnew.core.data.remote.ultis.Resource
 import com.junnew.core.di.qualifiers.IoDispatcher
-import com.junnew.design_system.constants.LogSystem
+import com.junnew.utils.constants.LogSystem
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

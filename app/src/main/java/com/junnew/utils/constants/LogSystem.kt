@@ -1,4 +1,4 @@
-package com.junnew.design_system.constants
+package com.junnew.utils.constants
 
 class LogSystem {
     companion object {

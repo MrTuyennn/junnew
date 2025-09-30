@@ -8,13 +8,14 @@ import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.core.view.WindowCompat
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navigation
-import com.junnew.design_system.constants.LogSystem
+import com.junnew.utils.constants.LogSystem
 import com.junnew.features.auth.ui.login.LoginScreen
 import com.junnew.features.auth.ui.register.RegisterScreen
 import com.junnew.utils.helper.AppLocaleManager
@@ -25,6 +26,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        WindowCompat.setDecorFitsSystemWindows(window,false)
         AppLocaleManager().getLanguageCode(this)
         setContent { AppRoot(this) }
     }
@@ -33,25 +35,15 @@ class MainActivity : AppCompatActivity() {
 @Composable
 private fun AppRoot(context: Context) {
     val nav = rememberNavController()
-//    NavHost(navController = nav, startDestination = AuthDestinations.Login) {
-//        authGraph(nav) {
-//            Log.d(LogSystem.LOG_LEVELS,"Login success -----")
-//          //  nav.navigate("home") { popUpTo(AuthDestinations.Login) { inclusive = true } }
-//        }
-//    }
 
     NavHost(navController = nav, startDestination = "auth") {
+
+        /// auth ///
         navigation(startDestination = "login", route = "auth") {
             composable("login") {
                 LoginScreen(
-                    context,
-                    nav, onSuccess = {
-                    Log.d(LogSystem.LOG_LEVELS, "Login success -----")
-                }){
-                    nav.navigate("register") {
-                        popUpTo("login") { inclusive = true }
-                    }
-                }
+                    nav = nav,
+                )
             }
             composable("register") {
                 RegisterScreen(nav, onSuccess = {
@@ -64,11 +56,13 @@ private fun AppRoot(context: Context) {
                 }
             }
         }
+
+        /// main
     }
 
 }
 
 @SuppressLint("UnrememberedGetBackStackEntry")
 @Composable
- fun rememberParentEntry(nav: NavController, parentRoute: String): NavBackStackEntry =
+fun rememberParentEntry(nav: NavController, parentRoute: String): NavBackStackEntry =
     remember(nav) { nav.getBackStackEntry(parentRoute) }

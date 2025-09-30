@@ -27,7 +27,10 @@ data class AppColors(
     val warning: Color,
     val error: Color,
     val appContainer: Color,
-    val onAppContainer: Color
+    val onAppContainer: Color,
+    val purpleBlue: Color,
+    val purpleBlueOpa: Color,
+    val white: Color,
 )
 
 val AppColorsLight = AppColors(
@@ -37,7 +40,11 @@ val AppColorsLight = AppColors(
     warning = Color(0xFFFFB020),
     error = Color(0xFFDE3B40),
     appContainer = Color(0xFFFFEBEE),
-    onAppContainer = Color(0xFF8A1C1C)
+    onAppContainer = Color(0xFF8A1C1C),
+    purpleBlue = Color(0xFF3936CD),
+    purpleBlueOpa = Color(0xFF9392F6),
+    white = Color(0xFFFFFFFF)
+
 )
 
 val AppColorsDark = AppColors(
@@ -47,5 +54,8 @@ val AppColorsDark = AppColors(
     warning = Color(0xFFFFC555),
     error = Color(0xFFFF6B6F),
     appContainer = Color(0xFF0A1E3A),
-    onAppContainer = Color(0xFFCCE0FF)
+    onAppContainer = Color(0xFFCCE0FF),
+    purpleBlue = Color(0xFF3936CD),
+    purpleBlueOpa = Color(0xFF9392F6),
+    white = Color(0xFFFFFFFF)
 )

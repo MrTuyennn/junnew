@@ -1,7 +1,7 @@
 package com.junnew.core.data.di.ultis
 
 import android.util.Log
-import com.junnew.design_system.constants.LogSystem
+import com.junnew.utils.constants.LogSystem
 import okhttp3.Interceptor
 import okhttp3.Response
 

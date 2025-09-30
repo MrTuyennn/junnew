@@ -6,7 +6,7 @@ import com.junnew.core.data.remote.dto.LoginRequest
 import com.junnew.core.data.remote.dto.RegisterRequest
 import com.junnew.core.di.qualifiers.IoDispatcher
 import com.junnew.core.domain.model.Auth
-import com.junnew.design_system.constants.LogSystem
+import com.junnew.utils.constants.LogSystem
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -15,7 +15,6 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
-import java.util.UUID
 import javax.inject.Inject
 import javax.inject.Singleton
 

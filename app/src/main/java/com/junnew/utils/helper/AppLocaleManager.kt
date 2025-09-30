@@ -7,7 +7,7 @@ import android.os.LocaleList
 import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.LocaleListCompat
-import com.junnew.design_system.constants.LogSystem
+import com.junnew.utils.constants.LogSystem
 
 data class Language(
     val code: String,
