@@ -82,6 +82,9 @@ dependencies {
     implementation(libs.retrofit.kotlinx.serialization)
     //
 
+//     icon
+    implementation(libs.androidx.compose.material.icons.extended)
+
     // test
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

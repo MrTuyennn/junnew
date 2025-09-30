@@ -75,10 +75,12 @@ fun JunNewTheme(
 
     val customColors = if (darkTheme) AppColorsDark else AppColorsLight
 
-    CompositionLocalProvider(LocalAppColors provides customColors) {
+    CompositionLocalProvider(LocalAppColors provides customColors,
+        LocalDimens provides Dimens()
+    ) {
         MaterialTheme(
             colorScheme = materialColors,
-            typography = Typography,
+            typography = appTypography,
             shapes = AppShapes,
             content = content
         )

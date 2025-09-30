@@ -20,6 +20,8 @@ data class Dimens(
     val paddingRegular: Dp = 8.dp,
     val paddingExtraLarge: Dp = 32.dp,
 
+    val heightBtn: Dp = 50.dp
+
     )
 
 val LocalDimens = compositionLocalOf { Dimens() }

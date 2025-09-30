@@ -5,4 +5,6 @@
     <string name="txt_email">Email</string>
     <string name="txt_password">Mật khẩu</string>
     <string name="text_welcome_back">Chào mừng quay lại</string>
-</resources>
+    <string name="txt_enter_your_details_below">Nhập thông tin chi tiết của bạn dưới đây</string>
+    <string name="txt_forgot_your_password">Quên mật khẩu?</string>
+    </resources>
