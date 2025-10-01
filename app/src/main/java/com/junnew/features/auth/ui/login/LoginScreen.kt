@@ -1,6 +1,5 @@
 package com.junnew.features.auth.ui.login
 
-import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -16,8 +15,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.platform.LocalFocusManager
-import androidx.compose.ui.tooling.preview.Preview
-import com.junnew.features.auth.ui.login.components.BoxContent
+import com.junnew.features.auth.ui.login.components.LoginContent
 
 
 @Composable
@@ -51,7 +49,11 @@ fun LoginScreen(
                 focusManager.clearFocus()
             }
     ) {
-        BoxContent()
+        LoginContent(
+            onNavigateRegister = {
+                nav?.navigate("register")
+            }
+        )
     }
 
 }
@@ -59,12 +61,12 @@ fun LoginScreen(
 
 
 
-@OptIn(ExperimentalSharedTransitionApi::class)
-@Preview()
-@Composable
-fun LoginScreenPreview() {
-    LoginScreen()
-}
+//@OptIn(ExperimentalSharedTransitionApi::class)
+//@Preview()
+//@Composable
+//fun LoginScreenPreview() {
+//    LoginScreen()
+//}
 
 
 
