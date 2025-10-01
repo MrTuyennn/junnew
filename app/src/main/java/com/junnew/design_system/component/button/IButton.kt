@@ -3,6 +3,7 @@ package com.junnew.design_system.component.button
 import android.annotation.SuppressLint
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
@@ -49,8 +50,13 @@ fun IButton(
             ButtonType.TONAL -> {
                 FilledTonalButton(
                     modifier = modifier,
-                    onClick = { onClick() }) {
-                    Text("Tonal")
+                    shape = shape.small,
+                    colors = colors,
+                    enabled = enabled,
+                    onClick = {
+                        onClick()
+                    }) {
+                    content()
                 }
             }
 

@@ -7,4 +7,12 @@
     <string name="text_welcome_back">Welcome Back</string>
     <string name="txt_enter_your_details_below">Enter your details below</string>
     <string name="txt_forgot_your_password">Forgot your password?</string>
+    <string name="txt_get_started_free">Get started free</string>
+    <string name="txt_free_forever_no_credit">Free forever. No credit card needed.</string>
+    <string name="txt_sign_up">Sign up</string>
+    <string name="txt_sign_in">Sign in</string>
+    <string name="txt_get_started">Get Started</string>
+    <string name="txt_or_sign_in_with">Or sign in with</string>
+    <string name="txt_dont_have_an_account">Don\'t have an account?</string>
+    <string name="txt_already_have_an_account">Already have an account?</string>
 </resources>

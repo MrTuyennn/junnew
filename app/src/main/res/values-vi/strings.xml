@@ -7,4 +7,12 @@
     <string name="text_welcome_back">Chào mừng quay lại</string>
     <string name="txt_enter_your_details_below">Nhập thông tin chi tiết của bạn dưới đây</string>
     <string name="txt_forgot_your_password">Quên mật khẩu?</string>
-    </resources>
+    <string name="txt_get_started_free">Bắt đầu miễn phí</string>
+    <string name="txt_free_forever_no_credit">Free forever. No credit card needed.</string>
+    <string name="txt_sign_up">Đăng ký</string>
+    <string name="txt_sign_in">Đăng nhập</string>
+    <string name="txt_get_started">Bắt đầu</string>
+    <string name="txt_or_sign_in_with">Hoặc đăng nhập với</string>
+    <string name="txt_dont_have_an_account">Bạn chưa có tài khoản?</string>
+    <string name="txt_already_have_an_account">Đã có tài khoản?</string>
+</resources>

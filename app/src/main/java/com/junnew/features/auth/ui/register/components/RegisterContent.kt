@@ -1,19 +1,22 @@
-package com.junnew.features.auth.ui.login.components
+package com.junnew.features.auth.ui.register.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -24,13 +27,16 @@ import com.junnew.R
 import com.junnew.design_system.component.box.IBox
 import com.junnew.design_system.component.button.IButton
 import com.junnew.design_system.component.input.EmailTextField
+import com.junnew.design_system.component.input.InputUserName
 import com.junnew.design_system.component.input.PasswordTextField
 import com.junnew.design_system.component.utils.Social
 import com.junnew.design_system.theme.appColors
 import com.junnew.design_system.theme.dimens
+import com.junnew.features.auth.ui.login.components.OrDivider
 
 @Composable
-fun LoginContent(onNavigateRegister: () -> Unit?) {
+fun RegisterContent() {
+
     val color = MaterialTheme.appColors
     val text = MaterialTheme.typography
     val shape = MaterialTheme.shapes
@@ -38,7 +44,7 @@ fun LoginContent(onNavigateRegister: () -> Unit?) {
 
     var email by rememberSaveable { mutableStateOf("") }
     var password by rememberSaveable { mutableStateOf("") }
-
+    var userName by rememberSaveable { mutableStateOf("") }
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -50,27 +56,28 @@ fun LoginContent(onNavigateRegister: () -> Unit?) {
         contentAlignment = Alignment.Center
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-
             IBox(height = d.extraLarge)
 
             Text(
-                text = stringResource(R.string.text_welcome_back),
+                text = stringResource(R.string.txt_get_started_free),
                 style = text.headlineLarge
             )
 
             IBox(height = d.medium)
 
             Text(
-                text = stringResource(R.string.txt_enter_your_details_below),
+                text = stringResource(R.string.txt_free_forever_no_credit),
                 style = text.bodyMedium
             )
-
-            IBox(height = d.medium)
-
 
             EmailTextField(
                 value = email,
                 onValueChange = { email = it },
+            )
+
+            InputUserName(
+                value = userName,
+                onValueChange = { userName = it },
             )
 
             PasswordTextField(
@@ -88,25 +95,11 @@ fun LoginContent(onNavigateRegister: () -> Unit?) {
                         shape = shape.small
                     ),
                 onClick = {
-                   // onNavigateRegister()
+                    //onNavigateRegister()
                 }
             ) {
-                Text(text = "Login", style = text.bodyLarge)
+                Text(text = stringResource(R.string.txt_get_started_free), style = text.bodyLarge)
             }
-
-            IBox(height = d.large)
-
-
-            Spacer(modifier = Modifier.height(d.medium))
-
-            Text(
-                text = stringResource(R.string.txt_forgot_your_password),
-                style = text.labelSmall,
-                modifier = Modifier
-                    .align(Alignment.CenterHorizontally)
-                    .padding(top = 4.dp)
-                    .then(Modifier) // chừa chỗ để add clickable nếu cần
-            )
 
             IBox(height = d.extraLarge)
 
