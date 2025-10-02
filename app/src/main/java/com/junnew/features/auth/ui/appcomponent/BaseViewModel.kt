@@ -8,5 +8,5 @@ open class BaseViewModel : LifecycleObserver, ViewModel() {
     init {
 
     }
-    
+
 }
