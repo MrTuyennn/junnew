@@ -7,13 +7,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -21,8 +18,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.junnew.R
 import com.junnew.design_system.component.box.IBox
 import com.junnew.design_system.component.button.IButton
@@ -32,19 +31,26 @@ import com.junnew.design_system.component.input.PasswordTextField
 import com.junnew.design_system.component.utils.Social
 import com.junnew.design_system.theme.appColors
 import com.junnew.design_system.theme.dimens
+import com.junnew.features.auth.ui.login.LoginUIState
 import com.junnew.features.auth.ui.login.components.OrDivider
+import com.junnew.features.auth.ui.register.RegisterUIState
+import com.junnew.features.auth.ui.register.RegisterViewModel
 
 @Composable
-fun RegisterContent() {
+fun RegisterContent(
+    viewModel: RegisterViewModel = hiltViewModel()
+) {
+
+    val context = LocalContext.current
 
     val color = MaterialTheme.appColors
     val text = MaterialTheme.typography
     val shape = MaterialTheme.shapes
     val d = MaterialTheme.dimens
 
-    var email by rememberSaveable { mutableStateOf("") }
-    var password by rememberSaveable { mutableStateOf("") }
-    var userName by rememberSaveable { mutableStateOf("") }
+    val registerFun = viewModel
+    val registerState: RegisterUIState = viewModel.ui.collectAsState().value
+
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -71,19 +77,27 @@ fun RegisterContent() {
             )
 
             EmailTextField(
-                value = email,
-                onValueChange = { email = it },
+                isError = registerState.emailError != null,
+                value = registerState.email,
+                onValueChange = { registerFun.onEmailChange(it) },
+                supportingText = registerState.emailError?.asString(context)
             )
 
             InputUserName(
-                value = userName,
-                onValueChange = { userName = it },
+                isError = registerState.nameError != null,
+                value = registerState.name,
+                onValueChange = { registerFun.onNameChange(it) },
+                supportingText = registerState.nameError?.asString(context)
             )
 
             PasswordTextField(
-                value = password,
-                onValueChange = { password = it},
+                isError = registerState.passwordError != null,
+                value = registerState.password,
+                onValueChange = { registerFun.onPasswordChange(it)},
+                supportingText = registerState.passwordError?.asString(context)
             )
+
+            IBox(height = d.extraLarge)
 
             // Nút "Sign in"
             IButton(
@@ -95,7 +109,9 @@ fun RegisterContent() {
                         shape = shape.small
                     ),
                 onClick = {
-                    //onNavigateRegister()
+                    registerFun.submit {
+                        // Xử lý khi đăng ký thành công
+                    }
                 }
             ) {
                 Text(text = stringResource(R.string.txt_get_started_free), style = text.bodyLarge)

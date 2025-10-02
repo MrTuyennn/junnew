@@ -31,16 +31,12 @@ fun LoginScreen(
 ) {
     val focusManager = LocalFocusManager.current
 
-    val vm: LoginViewModel = hiltViewModel()
-    val ui = vm.ui.collectAsState().value
-
     val color = MaterialTheme.appColors
     val d = MaterialTheme.dimens
     val text = MaterialTheme.typography
     val shape = MaterialTheme.shapes
 
     Box(
-       // contentAlignment = Alignment.BottomCenter,
         modifier = Modifier
             .fillMaxSize()
             .background(
@@ -80,7 +76,7 @@ fun LoginScreen(
                modifier = Modifier.weight(1f)){
                LoginContent(
                    onNavigateRegister = {
-                       nav?.navigate("register")
+                     //  nav?.navigate("register")
                    }
                )
            }

@@ -11,6 +11,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.mutableStateOf
@@ -18,8 +19,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.junnew.R
 import com.junnew.design_system.component.box.IBox
 import com.junnew.design_system.component.button.IButton
@@ -28,16 +31,25 @@ import com.junnew.design_system.component.input.PasswordTextField
 import com.junnew.design_system.component.utils.Social
 import com.junnew.design_system.theme.appColors
 import com.junnew.design_system.theme.dimens
+import com.junnew.features.auth.ui.login.LoginUIState
+import com.junnew.features.auth.ui.login.LoginViewModel
 
 @Composable
-fun LoginContent(onNavigateRegister: () -> Unit?) {
+fun LoginContent(
+    onNavigateRegister: () -> Unit?,
+    viewModel: LoginViewModel = hiltViewModel()
+) {
+
+    val context = LocalContext.current
+
     val color = MaterialTheme.appColors
     val text = MaterialTheme.typography
     val shape = MaterialTheme.shapes
     val d = MaterialTheme.dimens
 
-    var email by rememberSaveable { mutableStateOf("") }
-    var password by rememberSaveable { mutableStateOf("") }
+    val loginFun = viewModel
+    val loginState: LoginUIState = viewModel.ui.collectAsState().value
+
 
     Box(
         modifier = Modifier
@@ -69,14 +81,20 @@ fun LoginContent(onNavigateRegister: () -> Unit?) {
 
 
             EmailTextField(
-                value = email,
-                onValueChange = { email = it },
+                isError = loginState.emailError != null,
+                value = loginState.email,
+                onValueChange = { loginFun.onEmailChange(it)  },
+                supportingText = loginState.emailError?.asString(context)
             )
 
             PasswordTextField(
-                value = password,
-                onValueChange = { password = it},
+                isError = loginState.passwordError != null,
+                value = loginState.password,
+                onValueChange = { loginFun.onPasswordChange(it)},
+                supportingText = loginState.passwordError?.asString(context)
             )
+
+            IBox(height = d.medium)
 
             // Nút "Sign in"
             IButton(
@@ -88,10 +106,12 @@ fun LoginContent(onNavigateRegister: () -> Unit?) {
                         shape = shape.small
                     ),
                 onClick = {
-                   // onNavigateRegister()
+                   loginFun.submit {
+                      // onNavigateRegister()
+                   }
                 }
             ) {
-                Text(text = "Login", style = text.bodyLarge)
+                Text(text = stringResource(R.string.txt_sign_in), style = text.bodyLarge)
             }
 
             IBox(height = d.large)

@@ -1,12 +1,14 @@
 package com.junnew.features.auth.ui.register
 
+import com.junnew.utils.helper.UiText
+
 data class RegisterUIState(
     val name: String = "",
     val email: String = "",
     val password: String = "",
     val isLoading: Boolean = false,
-    val nameError: String? = null,
-    val emailError: String? = null,
-    val passwordError: String? = null,
+    val nameError: UiText? = null,
+    val emailError: UiText? = null,
+    val passwordError: UiText? = null,
     val generalError: String? = null
 )
