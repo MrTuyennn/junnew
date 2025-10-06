@@ -28,6 +28,40 @@ fun InputUserName(
 
     val color = MaterialTheme.appColors
 
+    val colors = OutlinedTextFieldDefaults.colors(
+        focusedTextColor = MaterialTheme.colorScheme.onSurface,
+        unfocusedTextColor = MaterialTheme.colorScheme.onSurface,
+        disabledTextColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f),
+        errorTextColor = MaterialTheme.colorScheme.onSurface,
+
+        focusedContainerColor = color.white,
+        unfocusedContainerColor = color.white,
+        disabledContainerColor = color.white,
+        errorContainerColor = color.white,
+
+        // Border
+        focusedBorderColor = Color(0xFFDDDDDD),
+        unfocusedBorderColor = Color(0xFFE9E9E9),
+        disabledBorderColor = Color(0xFFE9E9E9),
+        errorBorderColor = MaterialTheme.colorScheme.error,
+
+        // Cursor
+        cursorColor = color.grey,
+        errorCursorColor = color.grey,
+
+        // Label
+        focusedLabelColor = color.grey,
+        unfocusedLabelColor = color.grey,
+        disabledLabelColor = color.grey.copy(alpha = 0.38f),
+        errorLabelColor = MaterialTheme.colorScheme.error,
+
+        // Supporting text (màu gợi ý lỗi)
+        focusedSupportingTextColor = MaterialTheme.colorScheme.error,
+        unfocusedSupportingTextColor = MaterialTheme.colorScheme.error,
+        disabledSupportingTextColor = MaterialTheme.colorScheme.error.copy(alpha = 0.38f),
+        errorSupportingTextColor = MaterialTheme.colorScheme.error
+    )
+
     OutlinedTextField(
         value = value,
         onValueChange = onValueChange,
@@ -41,13 +75,7 @@ fun InputUserName(
             keyboardType = KeyboardType.Text,
             imeAction = ImeAction.Next
         ),
-        colors = OutlinedTextFieldDefaults.colors(
-            focusedContainerColor = color.white,
-            unfocusedContainerColor = color.white,
-            focusedBorderColor = Color(0xFFDDDDDD),
-            unfocusedBorderColor = Color(0xFFE9E9E9),
-            cursorColor = color.grey,
-        ),
+        colors = colors,
         isError = isError,
         supportingText = {
             supportingText?.let { Text(it) }

@@ -18,16 +18,19 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.junnew.R
 import com.junnew.design_system.component.button.IButton
 import com.junnew.design_system.theme.dimens
+import com.junnew.features.auth.ui.login.LoginViewModel
 import com.junnew.features.auth.ui.login.components.LoginContent
 import com.junnew.features.auth.ui.register.components.RegisterContent
 
 
 @Composable
 fun LoginScreen(
-    nav: NavController? = null
+    nav: NavController? = null,
+    viewModel: LoginViewModel = hiltViewModel()
 ) {
     val focusManager = LocalFocusManager.current
 
@@ -35,6 +38,8 @@ fun LoginScreen(
     val d = MaterialTheme.dimens
     val text = MaterialTheme.typography
     val shape = MaterialTheme.shapes
+
+    val loginFun = viewModel
 
     Box(
         modifier = Modifier
@@ -66,9 +71,10 @@ fun LoginScreen(
                IButton(
                    modifier = Modifier.height(d.extraLarge).background(color.purpleBlueOpa, shape = shape.small).padding(0.dp),
                    onClick = {
+                       loginFun.clean()
                        nav?.navigate("register")
                    }) {
-                   Text(stringResource(R.string.txt_get_started), style = text.labelMedium)
+                    Text(stringResource(R.string.txt_get_started), style = text.labelMedium)
                }
            }
            Box(

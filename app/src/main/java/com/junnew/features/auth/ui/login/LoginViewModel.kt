@@ -61,5 +61,7 @@ class LoginViewModel @Inject constructor(
         _ui.update { it.copy(name = name) }
     }
 
-
+    fun clean() {
+        _ui.update { LoginUIState() }
+    }
 }
