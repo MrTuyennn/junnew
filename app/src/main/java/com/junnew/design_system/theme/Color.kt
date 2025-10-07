@@ -33,6 +33,7 @@ data class AppColors(
     val white: Color,
     val pink : Color,
     val grey : Color,
+    val black : Color
 )
 
 val AppColorsLight = AppColors(
@@ -47,7 +48,8 @@ val AppColorsLight = AppColors(
     purpleBlueOpa = Color(0xFF9392F6),
     white = Color(0xFFFFFFFF),
     pink = Color(0xFFC7A2F0),
-    grey = Color(0xFFB2B2B2)
+    grey = Color(0xFFB2B2B2),
+    black = Color(0xFF000000)
 )
 
 val AppColorsDark = AppColors(
@@ -62,5 +64,6 @@ val AppColorsDark = AppColors(
     purpleBlueOpa = Color(0xFF9392F6),
     white = Color(0xFFFFFFFF),
     pink = Color(0xFFC7A2F0),
-    grey = Color(0xFFB2B2B2)
+    grey = Color(0xFFB2B2B2),
+    black = Color(0xFF000000)
 )
