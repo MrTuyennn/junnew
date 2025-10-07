@@ -1,15 +1,9 @@
-package com.junnew.features.auth.ui.register
+package com.junnew.features.auth.register
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.unit.Constraints
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.junnew.R
 import com.junnew.core.domain.usecase.RegisterUseCase
-import com.junnew.features.auth.ui.appcomponent.BaseViewModel
-import com.junnew.features.auth.ui.login.LoginUIState
+import com.junnew.app.appcomponent.BaseViewModel
 import com.junnew.utils.constants.Constants
 import com.junnew.utils.helper.UiText
 import dagger.hilt.android.lifecycle.HiltViewModel

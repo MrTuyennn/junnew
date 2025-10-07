@@ -1,10 +1,10 @@
-package com.junnew.features.auth.ui.login
+package com.junnew.features.auth.login
 
 import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.junnew.R
 import com.junnew.core.domain.usecase.LoginUseCase
-import com.junnew.features.auth.ui.appcomponent.BaseViewModel
+import com.junnew.app.appcomponent.BaseViewModel
 import com.junnew.utils.constants.Constants
 import com.junnew.utils.constants.LogSystem
 import com.junnew.utils.helper.UiText

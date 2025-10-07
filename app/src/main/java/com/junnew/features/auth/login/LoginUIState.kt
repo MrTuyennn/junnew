@@ -1,4 +1,4 @@
-package com.junnew.features.auth.ui.login
+package com.junnew.features.auth.login
 
 import com.junnew.utils.helper.UiText
 

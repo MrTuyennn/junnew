@@ -1,4 +1,4 @@
-package com.junnew.features.auth.ui.login
+package com.junnew.features.auth.login
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -12,19 +12,16 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import com.junnew.R
 import com.junnew.design_system.component.button.IButton
 import com.junnew.design_system.theme.dimens
-import com.junnew.features.auth.ui.login.LoginViewModel
-import com.junnew.features.auth.ui.login.components.LoginContent
-import com.junnew.features.auth.ui.register.components.RegisterContent
+import com.junnew.features.auth.login.components.LoginContent
+import com.junnew.features.navigation.MainGraphRoot
 
 
 @Composable
@@ -52,8 +49,8 @@ fun LoginScreen(
                     )
                 )
             )
-            .statusBarsPadding()
-            .navigationBarsPadding()
+//            .statusBarsPadding()
+//            .navigationBarsPadding()
             .clickable(
                 indication = null,
                 interactionSource = remember { MutableInteractionSource() }
@@ -83,7 +80,7 @@ fun LoginScreen(
                modifier = Modifier.weight(1f)){
                LoginContent(
                    onNavigateRegister = {
-                     //  nav?.navigate("register")
+                       nav?.navigate(MainGraphRoot)
                    }
                )
            }

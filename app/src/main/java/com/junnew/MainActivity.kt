@@ -16,8 +16,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navigation
 import com.junnew.utils.constants.LogSystem
-import com.junnew.features.auth.ui.login.LoginScreen
-import com.junnew.features.auth.ui.register.RegisterScreen
+import com.junnew.features.auth.login.LoginScreen
+import com.junnew.features.auth.register.RegisterScreen
+import com.junnew.features.navigation.RootNav
 import com.junnew.utils.helper.AppLocaleManager
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -28,38 +29,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window,false)
         AppLocaleManager().getLanguageCode(this)
-        setContent { AppRoot(this) }
+        setContent { AppRoot(false) }
     }
 }
 
 @Composable
-private fun AppRoot(context: Context) {
-    val nav = rememberNavController()
-
-    NavHost(navController = nav, startDestination = "auth") {
-
-        /// auth ///
-        navigation(startDestination = "login", route = "auth") {
-            composable("login") {
-                LoginScreen(
-                    nav = nav,
-                )
-            }
-            composable("register") {
-                RegisterScreen(nav, onSuccess = {
-                    Log.d(LogSystem.LOG_LEVELS, "Register success -----")
-
-                }) {
-                    nav.navigate("login") {
-                        popUpTo("register") { inclusive = true }
-                    }
-                }
-            }
-        }
-
-        /// main
-    }
-
+private fun AppRoot(isAuthenticated: Boolean) {
+    RootNav(isAuthenticated)
 }
 
 @SuppressLint("UnrememberedGetBackStackEntry")

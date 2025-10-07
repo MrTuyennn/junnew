@@ -1,4 +1,4 @@
-package com.junnew.features.auth.ui.appcomponent
+package com.junnew.app.appcomponent
 
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.ViewModel

@@ -18,4 +18,8 @@
     <string name="txt_please_enter_your_email_address">Email không hợp lệ</string>
     <string name="txt_password_must_be_at_least_6_characters">Mật khẩu tối thiểu 6 ký tự</string>
     <string name="txt_name_must_be_at_least_2_characters">Tên tối thiểu 2 ký tự</string>
+    <string name="txt_home">Trang chủ</string>
+    <string name="txt_map">Bản đồ</string>
+    <string name="txt_product">Sản phẩm</string>
+    <string name="txt_setting">Cài đặt</string>
 </resources>

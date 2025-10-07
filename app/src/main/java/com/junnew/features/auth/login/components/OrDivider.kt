@@ -1,4 +1,4 @@
-package com.junnew.features.auth.ui.login.components
+package com.junnew.features.auth.login.components
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer

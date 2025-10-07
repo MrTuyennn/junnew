@@ -18,4 +18,8 @@
     <string name="txt_please_enter_your_email_address">Please enter your email address</string>
     <string name="txt_password_must_be_at_least_6_characters">Password must be at least 6 characters</string>
     <string name="txt_name_must_be_at_least_2_characters">Name must be at least 2 characters</string>
+    <string name="txt_home">Home</string>
+    <string name="txt_map">Map</string>
+    <string name="txt_product">Product</string>
+    <string name="txt_setting">Setting</string>
 </resources>

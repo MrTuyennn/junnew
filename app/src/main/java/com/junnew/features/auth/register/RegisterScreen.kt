@@ -1,14 +1,10 @@
-package com.junnew.features.auth.ui.register
+package com.junnew.features.auth.register
 
 
-import android.app.Activity
-import android.content.Context
-import android.content.ContextWrapper
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.*
@@ -22,13 +18,11 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.junnew.R
-import com.junnew.design_system.component.button.ButtonType
 import com.junnew.design_system.component.button.IButton
 import com.junnew.design_system.theme.appColors
 import com.junnew.design_system.theme.dimens
-import com.junnew.features.auth.ui.login.LoginViewModel
-import com.junnew.features.auth.ui.login.components.LoginContent
-import com.junnew.features.auth.ui.register.components.RegisterContent
+import com.junnew.features.auth.login.LoginViewModel
+import com.junnew.features.auth.register.components.RegisterContent
 import com.junnew.rememberParentEntry
 
 @Composable

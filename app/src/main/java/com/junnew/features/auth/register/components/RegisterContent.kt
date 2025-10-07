@@ -1,4 +1,4 @@
-package com.junnew.features.auth.ui.register.components
+package com.junnew.features.auth.register.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -11,10 +11,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
@@ -31,10 +27,9 @@ import com.junnew.design_system.component.input.PasswordTextField
 import com.junnew.design_system.component.utils.Social
 import com.junnew.design_system.theme.appColors
 import com.junnew.design_system.theme.dimens
-import com.junnew.features.auth.ui.login.LoginUIState
-import com.junnew.features.auth.ui.login.components.OrDivider
-import com.junnew.features.auth.ui.register.RegisterUIState
-import com.junnew.features.auth.ui.register.RegisterViewModel
+import com.junnew.features.auth.login.components.OrDivider
+import com.junnew.features.auth.register.RegisterUIState
+import com.junnew.features.auth.register.RegisterViewModel
 
 @Composable
 fun RegisterContent(

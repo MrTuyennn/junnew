@@ -1,4 +1,4 @@
-package com.junnew.features.auth.ui.register
+package com.junnew.features.auth.register
 
 import com.junnew.utils.helper.UiText
 
