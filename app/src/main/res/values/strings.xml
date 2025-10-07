@@ -22,4 +22,9 @@
     <string name="txt_map">Map</string>
     <string name="txt_product">Product</string>
     <string name="txt_setting">Setting</string>
+    <string name="txt_payment_methods">Payment methods</string>
+    <string name="txt_notifications">Notifications</string>
+    <string name="txt_help_center">Help center</string>
+    <string name="txt_give_us_feedback">Give us feedback</string>
+    <string name="txt_log_out">Log out</string>
 </resources>

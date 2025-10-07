@@ -1,5 +1,6 @@
 package com.junnew.design_system.theme
 
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Typography
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
@@ -13,7 +14,7 @@ val appTypography = Typography(
         fontFamily = fireFlyFonts,
         fontSize = 32.sp,
         lineHeight = 40.sp,
-        letterSpacing = 0.sp
+        letterSpacing = 0.sp,
     ),
     headlineMedium = TextStyle(
         fontWeight = FontWeight.SemiBold,

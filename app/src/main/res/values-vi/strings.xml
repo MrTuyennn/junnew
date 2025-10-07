@@ -22,4 +22,9 @@
     <string name="txt_map">Bản đồ</string>
     <string name="txt_product">Sản phẩm</string>
     <string name="txt_setting">Cài đặt</string>
+    <string name="txt_payment_methods">Phương thức thanh toán</string>
+    <string name="txt_notifications">Thông báo</string>
+    <string name="txt_help_center">Trung tâm trợ giúp</string>
+    <string name="txt_give_us_feedback">Phản hồi</string>
+    <string name="txt_log_out">Đăng xuất</string>
 </resources>

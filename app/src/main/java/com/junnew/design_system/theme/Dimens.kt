@@ -15,7 +15,7 @@ data class Dimens(
     val large: Dp = 16.dp,
     val extraLarge: Dp = 32.dp,
 
-    val paddingDefault: Dp = 2.dp,
+    val paddingDefault: Dp = 12.dp,
     val paddingSmall: Dp = 4.dp,
     val paddingRegular: Dp = 8.dp,
     val paddingExtraLarge: Dp = 32.dp,
