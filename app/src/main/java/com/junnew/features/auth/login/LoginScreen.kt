@@ -21,6 +21,7 @@ import com.junnew.R
 import com.junnew.design_system.component.button.IButton
 import com.junnew.design_system.theme.dimens
 import com.junnew.features.auth.login.components.LoginContent
+import com.junnew.features.navigation.AuthGraphRoot
 import com.junnew.features.navigation.MainGraphRoot
 
 
@@ -49,8 +50,6 @@ fun LoginScreen(
                     )
                 )
             )
-//            .statusBarsPadding()
-//            .navigationBarsPadding()
             .clickable(
                 indication = null,
                 interactionSource = remember { MutableInteractionSource() }
@@ -80,7 +79,11 @@ fun LoginScreen(
                modifier = Modifier.weight(1f)){
                LoginContent(
                    onNavigateRegister = {
-                       nav?.navigate(MainGraphRoot)
+                       nav?.navigate(MainGraphRoot) {
+                           popUpTo(AuthGraphRoot) {
+                               inclusive = true
+                           }
+                       }
                    }
                )
            }

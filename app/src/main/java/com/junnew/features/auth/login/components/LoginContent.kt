@@ -103,9 +103,6 @@ fun LoginContent(
                     ),
                 onClick = {
                     onNavigateRegister()
-//                   loginFun.submit {
-//                      // onNavigateRegister()
-//                   }
                 }
             ) {
                 Text(text = stringResource(R.string.txt_sign_in), style = text.bodyLarge)

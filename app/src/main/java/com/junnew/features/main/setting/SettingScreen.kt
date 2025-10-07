@@ -12,18 +12,22 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
 import com.junnew.design_system.component.box.IBox
 import com.junnew.design_system.theme.appColors
 import com.junnew.design_system.theme.dimens
 import com.junnew.features.main.setting.components.FeatureSetting
 import com.junnew.features.main.setting.components.HeaderSetting
 import com.junnew.features.main.setting.components.common.SettingsAction
+import com.junnew.features.navigation.EditProfileRoute
 
 @Composable
-fun SettingScreen() {
-
+fun SettingScreen(
+    nav: NavController
+) {
     val color = MaterialTheme.appColors
     val dimens = MaterialTheme.dimens
 
@@ -38,10 +42,10 @@ fun SettingScreen() {
         Column {
             HeaderSetting()
             IBox(height = dimens.paddingDefault)
-            Box(modifier = Modifier.weight(1f)){
+            Box(modifier = Modifier.weight(1f)) {
                 FeatureSetting { settingsAction ->
                     when (settingsAction) {
-                        SettingsAction.OpenSettings -> println("Open Settings")
+                        SettingsAction.OpenSettings -> nav.navigate(EditProfileRoute)
                         SettingsAction.PaymentMethods -> println("Open Settings")
                         SettingsAction.Notifications -> println("Open Settings")
                         SettingsAction.HelpCenter -> println("Open Settings")
@@ -53,7 +57,7 @@ fun SettingScreen() {
             Box(
                 modifier = Modifier.fillMaxWidth(),
                 contentAlignment = Alignment.Center
-            ){
+            ) {
                 Text("Version", color = color.white, textAlign = TextAlign.Center)
             }
         }
@@ -63,5 +67,5 @@ fun SettingScreen() {
 @Preview
 @Composable
 fun PreViewSettingScreen() {
-    SettingScreen()
+    SettingScreen(nav = NavController(LocalContext.current))
 }

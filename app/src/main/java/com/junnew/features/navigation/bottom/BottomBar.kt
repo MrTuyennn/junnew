@@ -16,7 +16,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavDestination.Companion.hierarchy
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.currentBackStackEntryAsState
 import com.junnew.R
 import com.junnew.design_system.theme.AppIcon
 import com.junnew.design_system.theme.appColors
@@ -31,22 +34,23 @@ fun BottomBar(
 ) {
 
     val color = MaterialTheme.appColors
-    val navDestinationScreens = remember {
-        bottomNavItemsList
-    }
 
-    var selectedDestination by rememberSaveable { mutableIntStateOf(0) }
-
+    val items = listOf(HomeRoute, MapRoute, ProductRoute, SettingRoute)
+    val backStackEntry by navController.currentBackStackEntryAsState()
+    val currentDestination = backStackEntry?.destination
 
     NavigationBar(
         containerColor = color.black
     ) {
-        navDestinationScreens.forEachIndexed { index,screen ->
+        items.forEach { screen ->
+            val isSelected = currentDestination
+                ?.hierarchy
+                ?.any { it.route == screen::class.qualifiedName } == true
             NavigationBarItem(
-                selected = selectedDestination == index,
+                selected = isSelected,
                 label = {
                     Text(
-                        text = when (screen.destination) {
+                        text = when (screen) {
                             HomeRoute  -> stringResource(R.string.txt_home)
                             MapRoute -> stringResource(R.string.txt_map)
                             ProductRoute -> stringResource(R.string.txt_product)
@@ -58,11 +62,11 @@ fun BottomBar(
                 },
                 icon = {
                     Icon(
-                        imageVector = when (screen.destination) {
-                            HomeRoute -> if (selectedDestination == index) AppIcon.HomeFilled else AppIcon.HomeOutlined
-                            MapRoute  -> if (selectedDestination == index) AppIcon.MapFilled else AppIcon.MapOutlined
-                            ProductRoute  -> if (selectedDestination == index) AppIcon.ProductFilled else AppIcon.ProductOutlined
-                            SettingRoute  -> if (selectedDestination == index) AppIcon.SettingFilled else AppIcon.SettingOutlined
+                        imageVector = when (screen) {
+                            HomeRoute -> if (isSelected) AppIcon.HomeFilled else AppIcon.HomeOutlined
+                            MapRoute  -> if (isSelected) AppIcon.MapFilled else AppIcon.MapOutlined
+                            ProductRoute  -> if (isSelected) AppIcon.ProductFilled else AppIcon.ProductOutlined
+                            SettingRoute  -> if (isSelected) AppIcon.SettingFilled else AppIcon.SettingOutlined
                             else -> AppIcon.HomeOutlined
                         },
                         contentDescription = null
@@ -76,8 +80,13 @@ fun BottomBar(
                     indicatorColor = Color.Transparent
                 ),
                 onClick = {
-                    navController.navigate(route = screen.destination)
-                    selectedDestination = index
+                    navController.navigate(screen) {
+                        popUpTo(navController.graph.findStartDestination().id) {
+                            saveState = true
+                        }
+                        launchSingleTop = true
+                        restoreState = true
+                    }
                 }
             )
         }

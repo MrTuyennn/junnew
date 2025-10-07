@@ -4,6 +4,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
+import com.junnew.features.main.editProfile.EditProfileScreen
 import com.junnew.features.main.home.HomeScreen
 import com.junnew.features.main.map.MapScreen
 import com.junnew.features.main.products.ProductScreen
@@ -15,6 +16,8 @@ import kotlinx.serialization.Serializable
 @Serializable data object MapRoute
 @Serializable data object ProductRoute
 @Serializable data object SettingRoute
+
+@Serializable data object EditProfileRoute
 
 fun NavGraphBuilder.mainGraph(nav: NavController) {
     navigation<MainGraphRoot>(startDestination = HomeRoute){
@@ -28,7 +31,9 @@ fun NavGraphBuilder.mainGraph(nav: NavController) {
             ProductScreen()
         }
         composable<SettingRoute> {
-            SettingScreen()
+            SettingScreen(nav)
         }
+        composable<EditProfileRoute> { EditProfileScreen() }
+
     }
 }
