@@ -127,8 +127,6 @@ fun RegisterContent(
             IBox(height = d.large)
 
             Social()
-
-            IBox(height = d.extraLarge)
         }
     }
 }

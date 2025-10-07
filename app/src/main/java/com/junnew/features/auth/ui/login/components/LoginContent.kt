@@ -139,7 +139,7 @@ fun LoginContent(
 
             Social()
 
-            IBox(height = d.extraLarge)
+           // IBox(height = 40.dp)
         }
     }
 }

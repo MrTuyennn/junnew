@@ -62,6 +62,7 @@ fun RegisterScreen(
                 )
             )
             .statusBarsPadding()
+            .navigationBarsPadding()
             .clickable(
                 indication = null,
                 interactionSource = remember { MutableInteractionSource() }

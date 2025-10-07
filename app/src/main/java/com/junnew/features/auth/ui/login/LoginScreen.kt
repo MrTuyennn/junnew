@@ -53,6 +53,7 @@ fun LoginScreen(
                 )
             )
             .statusBarsPadding()
+            .navigationBarsPadding()
             .clickable(
                 indication = null,
                 interactionSource = remember { MutableInteractionSource() }
