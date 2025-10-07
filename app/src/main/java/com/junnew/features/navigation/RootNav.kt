@@ -61,7 +61,7 @@ fun RootNav(isAuthenticator: Boolean) {
         Box(
             modifier = Modifier
                 .padding(paddingValues)
-                .navigationBarsPadding()
+           //     .navigationBarsPadding()
         ) {
             NavHost(
                 navController = rootNavHostController,
