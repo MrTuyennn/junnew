@@ -15,7 +15,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.junnew.core.domain.entity.User
 import com.junnew.design_system.component.box.IBox
 import com.junnew.design_system.theme.appColors
 import com.junnew.design_system.theme.dimens
@@ -23,10 +25,12 @@ import com.junnew.features.main.setting.components.FeatureSetting
 import com.junnew.features.main.setting.components.HeaderSetting
 import com.junnew.features.main.setting.components.common.SettingsAction
 import com.junnew.features.navigation.EditProfileRoute
+import androidx.compose.runtime.collectAsState
 
 @Composable
 fun SettingScreen(
-    nav: NavController
+    nav: NavController,
+    viewModel: SettingViewModel = hiltViewModel()
 ) {
     val color = MaterialTheme.appColors
     val dimens = MaterialTheme.dimens
@@ -40,7 +44,7 @@ fun SettingScreen(
             .padding(dimens.paddingDefault)
     ) {
         Column {
-            HeaderSetting()
+            HeaderSetting(viewModel.currentUser.collectAsState().value)
             IBox(height = dimens.paddingDefault)
             Box(modifier = Modifier.weight(1f)) {
                 FeatureSetting { settingsAction ->

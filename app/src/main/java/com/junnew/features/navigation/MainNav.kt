@@ -33,7 +33,7 @@ fun NavGraphBuilder.mainGraph(nav: NavController) {
         composable<SettingRoute> {
             SettingScreen(nav)
         }
-        composable<EditProfileRoute> { EditProfileScreen() }
+        composable<EditProfileRoute> { EditProfileScreen(nav) }
 
     }
 }

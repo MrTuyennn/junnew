@@ -11,6 +11,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
@@ -25,7 +26,6 @@ class AuthRepositoryImpl @Inject constructor(
 ): AuthRepository {
 
     private val current = MutableStateFlow<Auth?>(null)
-    private val users = mutableMapOf<String, Pair<String, String>>()
 
     override  fun login(
         email: String,
@@ -34,6 +34,8 @@ class AuthRepositoryImpl @Inject constructor(
         Log.d(LogSystem.LOG_LEVELS, "login : $email")
         val user = remoteDataSource.loginAuth(LoginRequest(email, password))
 
+
+
         return flow {
             val dto = user.first()
             val auth = Auth(
@@ -41,6 +43,7 @@ class AuthRepositoryImpl @Inject constructor(
                 name = dto.data?.token ?: "",
                 email = dto.data?.email ?: "",
             )
+            current.value = auth
             emit(auth)
         }.flowOn(coroutineDispatcher)
     }
@@ -64,7 +67,7 @@ class AuthRepositoryImpl @Inject constructor(
        }
     }
 
-    override fun currentUser(): Flow<Auth?> = current.asStateFlow()
+    override fun currentUser(): StateFlow<Auth?> = current.asStateFlow()
 
     override suspend fun logout() {
         delay(200)

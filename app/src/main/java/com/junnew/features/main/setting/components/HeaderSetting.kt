@@ -17,14 +17,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
+import com.junnew.core.domain.entity.User
 import com.junnew.design_system.component.box.IBox
 import com.junnew.design_system.theme.appColors
 
 @Composable
-fun HeaderSetting() {
+fun HeaderSetting(
+    user: User
+) {
 
     val colors = MaterialTheme.appColors
     val text = MaterialTheme.typography
@@ -50,7 +52,7 @@ fun HeaderSetting() {
         IBox(width = 10.dp)
         Box(modifier = Modifier.weight(1f)){
             Column {
-                Text("User Name", style = text.headlineMedium.copy(
+                Text(user?.userName ?: "", style = text.headlineMedium.copy(
                     colors.white
                 ))
                 IBox(width = 10.dp)
@@ -63,9 +65,9 @@ fun HeaderSetting() {
     }
 }
 
-
-@Preview
-@Composable
-fun PreViewHeaderSetting() {
-    HeaderSetting()
-}
+//
+//@Preview
+//@Composable
+//fun PreViewHeaderSetting() {
+//    HeaderSetting()
+//}
