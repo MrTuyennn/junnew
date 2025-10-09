@@ -1,23 +1,15 @@
-package com.junnew
+package com.junnew.features
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.core.view.WindowCompat
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navigation
-import com.junnew.utils.constants.LogSystem
-import com.junnew.features.auth.login.LoginScreen
-import com.junnew.features.auth.register.RegisterScreen
 import com.junnew.features.navigation.RootNav
 import com.junnew.utils.helper.AppLocaleManager
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,11 +17,17 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+
+    // variable MainViewModel
+    private val mainViewModel: MainViewModel by viewModels()
+    // trigger login
+    private var isAuthenticated = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window,false)
         AppLocaleManager().getLanguageCode(this)
-        setContent { AppRoot(false) }
+        isAuthenticated = mainViewModel.isUserAuthenticated()
+        setContent { AppRoot(isAuthenticated) }
     }
 }
 

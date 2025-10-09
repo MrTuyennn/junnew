@@ -1,5 +1,6 @@
 package com.junnew.features.navigation
 
+import android.util.Log
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
 import androidx.compose.foundation.layout.Box
@@ -9,6 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -22,6 +24,7 @@ import androidx.navigation.compose.rememberNavController
 import com.junnew.features.main.editProfile.EditProfileScreen
 import com.junnew.features.main.products.ProductScreen
 import com.junnew.features.navigation.bottom.BottomBar
+import com.junnew.utils.constants.LogSystem
 
 @Composable
 fun RootNav(isAuthenticator: Boolean) {

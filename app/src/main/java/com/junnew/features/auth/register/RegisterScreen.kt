@@ -23,7 +23,7 @@ import com.junnew.design_system.theme.appColors
 import com.junnew.design_system.theme.dimens
 import com.junnew.features.auth.login.LoginViewModel
 import com.junnew.features.auth.register.components.RegisterContent
-import com.junnew.rememberParentEntry
+import com.junnew.features.rememberParentEntry
 
 @Composable
 fun RegisterScreen(
