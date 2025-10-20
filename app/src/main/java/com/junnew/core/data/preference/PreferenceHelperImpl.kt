@@ -33,7 +33,7 @@ class PreferenceHelperImpl @Inject constructor(
         }
     }
 
-    override fun getLoggedIsStatus(loginStatus: Boolean): Boolean {
+    override fun getLoggedIsStatus(): Boolean {
         return sharedPreferences.getBoolean(PrefConstants.PREF_LOGGED_IN_STATUS, false)
     }
 
@@ -44,7 +44,7 @@ class PreferenceHelperImpl @Inject constructor(
     ) {
         saveLoggerInUserId(userId)
         saveAccessToken(accessToken)
-        getLoggedIsStatus(loginStatus)
+        getLoggedIsStatus()
     }
 
     override suspend fun clearPreference() {

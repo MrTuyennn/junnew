@@ -11,7 +11,7 @@ interface PreferenceHelper {
 
     suspend fun saveLoggedIsStatus(status: Boolean)
 
-    fun getLoggedIsStatus(loginStatus: Boolean): Boolean
+    fun getLoggedIsStatus(): Boolean
 
     suspend fun saveLoggedIdUserDetails(userId: String, accessToken: String, loginStatus: Boolean)
 
