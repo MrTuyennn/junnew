@@ -1,3 +1,4 @@
+import java.util.Properties
 
 plugins {
     alias(libs.plugins.android.application)
@@ -10,27 +11,61 @@ plugins {
 }
 
 android {
-    namespace = "com.junnew"
-    compileSdk = 36
+
+    val props = Properties().apply {
+        val file = rootProject.file("config.properties")
+        if (file.exists()) file.inputStream().use { load(it) }
+        else error("Missing config.properties")
+    }
+
+    namespace = props["APPLICATIONID"].toString()
+    compileSdk = props["COMPILESDK"].toString().toInt()
 
     defaultConfig {
-        applicationId = "com.junnew"
-        minSdk = 24
-        targetSdk = 36
-        versionCode = 1
-        versionName = "1.0"
+        applicationId = props["APPLICATIONID"].toString()
+        minSdk = props["MINSDK"].toString().toInt()
+        targetSdk = props["TARGETSDK"].toString().toInt()
+        versionCode = props["VERSIONCODE"].toString().toInt()
+        versionName = props["VERSIONNAME"].toString()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
        // buildConfigField("String", "BASE_URL", "\"https://api.example.com/\"")
     }
 
+    buildFeatures {
+        compose = true
+        buildConfig = true
+    }
+
+    flavorDimensions += "environment"
+
+    productFlavors {
+        create("dev") {
+            dimension = "environment"
+            applicationIdSuffix = ".dev"
+            versionNameSuffix = "-dev"
+            resValue("string", "app_name", "${props["APP_NAME"]} - dev")
+            buildConfigField("String", "BASE_URL", "\"${props["BASE_URL_STG"]}\"")
+        }
+        create("prod") {
+            dimension = "environment"
+            resValue("string", "app_name", props["APP_NAME"].toString())
+            buildConfigField("String", "BASE_URL", "\"${props["BASE_URL_PROD"]}\"")
+        }
+    }
+
+
     buildTypes {
+        debug {
+            isMinifyEnabled = false
+        }
         release {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            signingConfig = signingConfigs.getByName("debug")
         }
     }
     compileOptions {
@@ -42,10 +77,7 @@ android {
         jvmTarget = "11"
     }
 
-    buildFeatures {
-        compose = true
-        buildConfig = true
-    }
+
 
 //    androidResources {
 //        generateLocaleConfig = true

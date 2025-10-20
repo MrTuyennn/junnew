@@ -26,6 +26,8 @@ import com.junnew.features.main.setting.components.HeaderSetting
 import com.junnew.features.main.setting.components.common.SettingsAction
 import com.junnew.features.navigation.EditProfileRoute
 import androidx.compose.runtime.collectAsState
+import com.junnew.utils.config.ConfigApp
+import com.junnew.utils.config.checkTypeFlaVor
 
 @Composable
 fun SettingScreen(
@@ -62,7 +64,7 @@ fun SettingScreen(
                 modifier = Modifier.fillMaxWidth(),
                 contentAlignment = Alignment.Center
             ) {
-                Text("Version", color = color.white, textAlign = TextAlign.Center)
+                Text("Version ${ConfigApp().versionName} ${checkTypeFlaVor(ConfigApp().type)}", color = color.white, textAlign = TextAlign.Center)
             }
         }
     }
