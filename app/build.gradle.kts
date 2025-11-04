@@ -54,6 +54,10 @@ android {
         }
     }
 
+    signingConfigs {
+
+    }
+
 
     buildTypes {
         debug {
@@ -119,6 +123,8 @@ dependencies {
 
     // coil
     implementation(libs.bundles.coil.base)
+
+
     // test
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

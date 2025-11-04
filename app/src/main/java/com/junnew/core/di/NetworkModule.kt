@@ -11,8 +11,10 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
+import com.junnew.BuildConfig
 import com.junnew.core.data.di.ultis.AuthInterceptor
 import com.junnew.core.data.di.ultis.LoggingInterceptor
+import com.junnew.core.data.di.ultis.TokenAuthenticator
 import com.junnew.core.data.remote.service.AuthApi
 import java.util.concurrent.TimeUnit
 
@@ -20,7 +22,7 @@ import java.util.concurrent.TimeUnit
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
-    @Provides fun provideBaseUrl(): String = "https://api.example.com/"
+    @Provides fun provideBaseUrl(): String = "https://api.spotify.com/"
 
     @Provides
     @Singleton
@@ -38,7 +40,7 @@ object NetworkModule {
 
 
         return OkHttpClient.Builder()
-           // .authenticator(TokenAuthenticator(provideAuthApi(provideRetrofit(provideOkHttp(context), provideBaseUrl(), provideJson())), provideSharedPreferences(context)))
+            //.authenticator(TokenAuthenticator(provideAuthApi(provideRetrofit(provideOkHttp(context), provideBaseUrl(), provideJson())), provideSharedPreferences(context)))
             .addInterceptor(AuthInterceptor())
             .addInterceptor(LoggingInterceptor())
             .connectTimeout(30, TimeUnit.SECONDS)

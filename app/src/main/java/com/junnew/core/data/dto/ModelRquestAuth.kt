@@ -23,3 +23,41 @@ data class AuthDto(
 
 @Serializable
 data class TokenPair(val accessToken: String, val refreshToken: String)
+
+@Serializable
+data class TopTracksResponse(
+    val items: List<Track>,
+    val total: Int,
+    val limit: Int,
+    val offset: Int
+)
+
+@Serializable
+data class Track(
+    val id: String,
+    val name: String,
+    val artists: List<Artist>,
+    val album: Album? = null,
+    val duration_ms: Int? = null,
+    val popularity: Int? = null
+)
+
+@Serializable
+data class Artist(
+    val id: String,
+    val name: String
+)
+
+@Serializable
+data class Album(
+    val id: String,
+    val name: String,
+    val images: List<Image>? = null
+)
+
+@Serializable
+data class Image(
+    val url: String,
+    val width: Int? = null,
+    val height: Int? = null
+)

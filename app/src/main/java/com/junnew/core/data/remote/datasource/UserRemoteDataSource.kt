@@ -5,6 +5,7 @@ import com.junnew.core.data.remote.service.AuthApi
 import com.junnew.core.data.remote.dto.AuthDto
 import com.junnew.core.data.remote.dto.LoginRequest
 import com.junnew.core.data.remote.dto.RegisterRequest
+import com.junnew.core.data.remote.dto.TopTracksResponse
 import com.junnew.core.data.remote.ultis.BaseApiResponse
 import com.junnew.core.data.remote.ultis.Resource
 import com.junnew.core.di.qualifiers.IoDispatcher
@@ -19,7 +20,18 @@ import javax.inject.Inject
 class UserRemoteDataSource @Inject constructor(
     private val authApi: AuthApi,
     @param:IoDispatcher private val coroutineDispatcher: CoroutineDispatcher): BaseApiResponse() {
-    fun loginAuth(loginRequest: LoginRequest): Flow<Resource<AuthDto>> {
+
+    suspend fun getTopTracks(): Flow<Resource<TopTracksResponse>> {
+        return flow {
+            try {
+                emit(safeApiCall { authApi.getTopTracks() })
+            } catch (e: Exception) {
+                Log.e(LogSystem.LOG_LEVELS, "getTopTracks error $e", e)
+                emit(Resource.Error(e.message ?: "Unknown error occurred"))
+            }
+        }.flowOn(coroutineDispatcher)
+    }
+    fun loginAuth(loginRequest : LoginRequest): Flow<Resource<AuthDto>> {
         return flow {
             try {
                 emit(safeApiCall { authApi.login(loginRequest) })

@@ -46,7 +46,7 @@ fun EditProfileScreen(
             onClick = {
                 scope.launch {
                     viewModel.updateUser(User(userName = "tuyen", phone = 23467238, email = "emaiu"))
-                    nav.popBackStack()
+                  //  nav.popBackStack()
                 }
 
             }) {
